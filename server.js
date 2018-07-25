@@ -18,6 +18,9 @@ app.get('/api/timestamp/:date_string', function(req, res) {
     res.send({ unix: date.getTime(), utc: date.toUTCString() });
   }
 });
+app.get('/', function(req, res) {
+  res.send('Example Usage: [project url]/api/timestamp/2015-12-25');
+});
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function() {
