@@ -12,10 +12,12 @@ var app = express();
 app.use(express.static('public'));
 
 // http://expressjs.com/en/starter/basic-routing.html
-app.get('/', function(req, res) {
-  res.send('Hello Express');
+app.get('/api/timestamp/:date_string', function(req, res) {
+  let date = new Date(req.params.date_string);
+  if (date) {
+    res.send({ unix: date.getTime(), utc: date.toUTCString() });
+  }
 });
-
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function() {
